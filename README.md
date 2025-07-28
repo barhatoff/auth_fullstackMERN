@@ -8,6 +8,7 @@ It includes secure **JWT-based authentication** with access and refresh tokens.
 - TypeScript
 - Axios
 - MUI (Material UI)
+- SASS
 
 ### Backend:
 - Node.js
