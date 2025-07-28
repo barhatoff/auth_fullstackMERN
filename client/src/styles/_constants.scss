@@ -1,0 +1,40 @@
+// MIN and MAX view area size
+$min-w: 375px;
+$max-w: 1536px;
+
+// COLORS
+$body-color: #3c3c3c;
+
+// FONTS
+$font-family: "Arial, sans-serif";
+$alert-font-color: #fd4a33;
+$success-font-color: #479759;
+$basic-font-color: #fff;
+// SPACERS
+$spacer-base: 1.875rem; // 30px
+
+$spacer-xxs: 0.15 * $spacer-base; // 4.5px
+$spacer-xs: 0.5 * $spacer-base; // 15px
+$spacer-s: 0.75 * $spacer-base; // 22.5px
+$spacer-m: $spacer-base; // 30px
+$spacer-l: 1.5 * $spacer-base; // 45px
+$spacer-xl: 2 * $spacer-base; // 60px
+$spacer-xxl: 2.25 * $spacer-base; // 67.5px
+
+// FONTS
+$fs-base: 1rem; // 16px
+
+$fs-xxs: 0.6875rem; // 11px
+$fs-xs: 0.75rem; // 12px
+$fs-s: 0.875rem; // 14px
+$fs-m: $fs-base; // 16px
+$fs-l: 1.25rem; // 20px
+$fs-xl: 2.5rem; // 40px
+$fs-xxl: 3.75rem; // 60px
+
+// BOTSTRAP
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;

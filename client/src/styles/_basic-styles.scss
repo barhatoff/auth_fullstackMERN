@@ -1,0 +1,156 @@
+@use "./constants";
+@import "./mixins";
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+
+  background-color: constants.$body-color;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  display: flex;
+  @include fluid-fs($min-w, $max-w, $fs-xs, $fs-xl);
+  font-size: 16px;
+
+  @include down(sm) {
+    font-size: 6px;
+  }
+
+  @include up(sm) {
+    font-size: 7px;
+  }
+
+  @include up(md) {
+    font-size: 12px;
+  }
+
+  @include up(lg) {
+    font-size: 13px;
+  }
+
+  @include up(xl) {
+    font-size: 14px;
+  }
+
+  @include up(xxl) {
+    font-size: 16px;
+  }
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  background: none;
+  border: none;
+  text-decoration: underline;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+h1 {
+  font-size: constants.$fs-xxl;
+}
+
+h2 {
+  font-size: constants.$fs-xl;
+}
+
+span {
+  font-size: constants.$fs-l;
+}
+
+p {
+  font-size: constants.$fs-m;
+}
+.z-index-0 {
+  z-index: 0;
+}

@@ -1,0 +1,38 @@
+@import "./utils/flex";
+@import "./utils/fonts";
+@import "./utils/sizing";
+@import "./utils/spacing";
+@import "./utils/utils";
+
+@import "./basic-styles";
+@import "./constants";
+@import "./fns";
+@import "./mixins";
+@import "./ui_elements";
+
+/* 
+DISPLAYS:
+d-flex -> display: flex
+p-absolute -> position: absolute
+
+FLEX:
+flex-center -> display: flex; justify-content: "center"; align-items: center;
+items-end
+
+FONTS:
+fs-l -> font-size: {$L}rem
+fw-900 -> font-weight: 900
+
+SIZING:
+w-full ->  width: 100vw;
+h-full -> height: 100vh;
+w-6 -> width: 50%
+h-1 -> height: 8,3333333%
+
+SPACING:
+mt-s -> marging-top: {$S} px
+pb-m -> padding-bottom: {$M} px
+gap-xxs -> space beetwen flexes or grids
+
+
+*/

@@ -1,0 +1,99 @@
+// display
+@each $v in none, inline, block, inline-block, flex, inline-flex, grid,
+  inline-grid
+{
+  .d-#{$v} {
+    display: $v;
+  }
+}
+
+// position
+@each $v in relative, absolute, fixed, sticky {
+  .p-#{$v} {
+    position: $v;
+  }
+}
+
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+.cursor-notallowed {
+  cursor: not-allowed;
+}
+.cursor-wait {
+  cursor: wait;
+}
+.pointer-events-none {
+  pointer-events: none;
+}
+.filter-invert-100per {
+  filter: invert(100%);
+}
+.transform-rotate-180 {
+  transform: rotate(180deg);
+}
+.disable-user-select {
+  -webkit-user-select: none;
+  /* Safari */
+  //-ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
+}
+.display-none {
+  display: none;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+
+  @include down(sm) {
+    min-width: 300px;
+  }
+
+  @include up(sm) {
+    min-width: 576px;
+  }
+
+  @include up(md) {
+    min-width: 768px;
+  }
+
+  @include up(lg) {
+    min-width: 992px;
+  }
+
+  @include up(xl) {
+    min-width: 1400px;
+  }
+
+  @include up(xxl) {
+    min-width: 100%;
+  }
+}
+.p-relative {
+  position: relative;
+}
+.p-absolute {
+  position: absolute;
+}
+.center {
+  margin: auto;
+}

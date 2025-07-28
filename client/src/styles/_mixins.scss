@@ -1,0 +1,67 @@
+@import "./constants";
+
+// FLEX MIXIN
+@mixin flex-center($d: row) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @if ($d ==column) {
+    flex-direction: column;
+  }
+}
+
+// BREAKPOINTS
+$breakpoints: (
+  "sm": $sm,
+  "md": $md,
+  "lg": $lg,
+  "xl": $xl,
+  "xxl": $xxl,
+);
+
+@mixin up($b) {
+  @if map-has-key($breakpoints, $b) {
+    $v: map-get($breakpoints, $b);
+
+    @media (min-width: $v) {
+      @content;
+    }
+  }
+}
+
+@mixin down($b) {
+  @if map-has-key($breakpoints, $b) {
+    $v: map-get($breakpoints, $b);
+
+    @media (max-width: $v) {
+      @content;
+    }
+  }
+}
+
+// FLUID FONT-SIZE
+
+@mixin fluid-fs($min-w, $max-w, $min-fs, $max-fs) {
+  $u1: unit($min-w);
+  $u2: unit($max-w);
+  $u3: unit($min-fs);
+  $u4: unit($max-fs);
+
+  @if $u1 ==$u2 and $u1 ==$u3 and $u1 ==$u4 {
+    & {
+      font-size: $min-fs;
+
+      @media (min-width: $min-w) {
+        font-size: calc(
+          #{$min-fs} + #{strip-unit($max-fs - $min-fs)} *
+            ((100vw - #{$min-w}) / #{strip-unit($max-w - $min-w)})
+        );
+      }
+
+      @media (min-width: $max-w) {
+        font-size: $max-fs;
+      }
+    }
+  }
+}

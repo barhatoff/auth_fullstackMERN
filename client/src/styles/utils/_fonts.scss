@@ -1,0 +1,41 @@
+@use "../constants";
+
+$font-sizes: (
+  "0": 0,
+  xxs: $fs-xxs,
+  xs: $fs-xs,
+  s: $fs-s,
+  m: $fs-m,
+  l: $fs-l,
+  xl: $fs-xl,
+  xxl: $fs-xxl,
+);
+
+@each $size, $factor in $font-sizes {
+  .fs-#{$size} {
+    font-size: $factor;
+  }
+}
+
+// font-weight
+@each $v in 100, 200, 300, 400, 500, 600, 700, 800, 900 {
+  .fw-#{$v} {
+    font-weight: $v;
+  }
+}
+
+// FONTS DECORATION
+.fd-underline {
+  text-decoration: underline;
+}
+
+.fc-al {
+  color: constants.$alert-font-color;
+}
+
+.fc-succ {
+  color: constants.$success-font-color;
+}
+.fc-white {
+  color: white;
+}

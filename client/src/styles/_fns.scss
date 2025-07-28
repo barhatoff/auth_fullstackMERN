@@ -1,0 +1,7 @@
+@function strip-unit($v) {
+    @return $v / ($v * 0 + 1);
+}
+
+@function rem($v) {
+    @return #{strip-unit($v / $fs-base)}+rem;
+}
