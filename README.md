@@ -18,3 +18,8 @@ It includes secure **JWT-based authentication** with access and refresh tokens.
 - JSON Web Tokens (JWT)
 - Bcrypt
 - Cookie-based refresh token storage
+
+
+.env
+  PORT=
+  DB_URL=
