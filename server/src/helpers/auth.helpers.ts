@@ -37,7 +37,10 @@ export const authHelpers = {
       next({ code: 500, message: "jwt secret not defined" });
       return { valid: false };
     } catch (error) {
-      next({ code: 401, message: "token not valid or exprired" });
+      next({
+        code: type === "REFRESH" ? 403 : 401,
+        message: "token not valid or exprired",
+      });
       return { valid: false };
     }
   },
