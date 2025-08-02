@@ -74,7 +74,9 @@ export const authConroller = {
             await RefreshTokenModel.create({
               userId: user._id,
               token: tokens.refreshToken,
-              expiresAt: new Date(Date.now() + constant.TOKEN_REFRESH_LIFETIME),
+              expiresAt: new Date(
+                Date.now() + constant.TOKEN_REFRESH_LIFETIME * 1000
+              ),
               ip: req.socket.remoteAddress,
             });
             res.cookie("refreshToken", tokens.refreshToken, {
