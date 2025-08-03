@@ -1,7 +1,21 @@
 import axios from "axios";
 import { constant } from "../../constants/constant";
 
-axios.interceptors.response.use(
+const axiosInstance = axios.create({
+  baseURL: constant.API_DOMEN,
+  withCredentials: true,
+  timeout: 20000,
+});
+
+axiosInstance.interceptors.request.use((config) => {
+  const accessToken = localStorage.getItem("access_token");
+  if (accessToken) {
+    config.headers.Authorization = accessToken;
+  }
+  return config;
+});
+
+axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
@@ -13,7 +27,6 @@ axios.interceptors.response.use(
       window.location.pathname !== "/register"
     ) {
       originalRequest._retry = true;
-
       try {
         const res = await axios.get(`${constant.API_DOMEN}auth/refresh`, {
           withCredentials: true,
@@ -23,7 +36,7 @@ axios.interceptors.response.use(
         if (newAccessToken) {
           localStorage.setItem("access_token", newAccessToken);
           originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-          return axios(originalRequest);
+          return axiosInstance(originalRequest);
         }
       } catch (err) {
         throw new Error("Token not valid or expired");
@@ -33,3 +46,5 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+export default axiosInstance;

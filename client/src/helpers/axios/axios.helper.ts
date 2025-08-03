@@ -1,6 +1,6 @@
-import axios, { AxiosError } from "axios";
-import { constant } from "../../constants/constant";
+import { AxiosError } from "axios";
 import { SetError } from "../../types";
+import axiosInstance from "./interceptors.helper";
 
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
@@ -12,14 +12,10 @@ const apiRequest = async (
 ) => {
   document.body.style.cursor = "wait";
   try {
-    const accessToken = localStorage.getItem("access_token");
-    const response = await axios({
+    const response = await axiosInstance({
       method,
-      url: constant.API_DOMEN + url,
+      url,
       data: req,
-      withCredentials: true,
-      timeout: 20000,
-      headers: accessToken ? { Authorization: accessToken } : undefined,
     })
       .then((res) => {
         if (url === "auth/login" || url === "auth/register") {
@@ -35,7 +31,7 @@ const apiRequest = async (
           return;
         }
         if (e?.response?.status) {
-          if (e.response.status === 401) return;
+          if (e.response.status === 401 && url === "auth") return;
 
           setError({
             message: e.response.statusText,
