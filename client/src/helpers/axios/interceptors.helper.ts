@@ -5,7 +5,13 @@ axios.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    if (
+      error.response?.status === 401 &&
+      !originalRequest._retry &&
+      !originalRequest.url.includes("/auth/refresh") &&
+      window.location.pathname !== "/login" &&
+      window.location.pathname !== "/register"
+    ) {
       originalRequest._retry = true;
 
       try {
@@ -20,7 +26,7 @@ axios.interceptors.response.use(
           return axios(originalRequest);
         }
       } catch (err) {
-        console.error("Refresh token expired");
+        throw new Error("Token not valid or expired");
       }
     }
 

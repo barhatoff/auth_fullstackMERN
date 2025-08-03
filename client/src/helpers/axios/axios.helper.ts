@@ -37,11 +37,12 @@ const apiRequest = async (
         if (e?.response?.status) {
           if (
             e?.response &&
-            (e.response.status === 401 || e.response.status === 403) &&
+            e.response.status === 401 &&
             (window.location.pathname === "/login" ||
               window.location.pathname === "/register")
           )
             return;
+
           setError({
             message: e.response.statusText,
             code: e.response.status,
