@@ -129,9 +129,11 @@ export const authConroller = {
   refresh: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const refreshToken = req.cookies.refreshToken;
-      if (!refreshToken) return next({ code: enums.RESPONSE_CODES.FORBIDDEN });
+      if (!refreshToken)
+        return next({ code: enums.RESPONSE_CODES.UNAUTHORIZED });
 
       const verifyResult = authHelpers.jwtVerify(refreshToken, next, "REFRESH");
+
       if (verifyResult.valid) {
         const tokens = authHelpers.jwtSign(verifyResult.payload);
         if (tokens) {
@@ -147,10 +149,9 @@ export const authConroller = {
               ip: req.socket.remoteAddress,
             }
           );
-
           if (result.modifiedCount === 0)
             return next({
-              code: enums.RESPONSE_CODES.FORBIDDEN,
+              code: enums.RESPONSE_CODES.UNAUTHORIZED,
               message: "token not found or expired",
             });
           res.cookie("refreshToken", tokens.refreshToken, {
@@ -165,7 +166,8 @@ export const authConroller = {
           return;
         }
       }
-      return next({ code: enums.RESPONSE_CODES.FORBIDDEN });
+
+      return next({ code: enums.RESPONSE_CODES.UNAUTHORIZED });
     } catch (error) {
       next(error);
     }
